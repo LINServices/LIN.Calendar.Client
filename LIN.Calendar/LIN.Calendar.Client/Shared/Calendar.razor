@@ -1,0 +1,126 @@
+﻿@code
+{
+
+    private DateTime Today = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+
+
+    /// <summary>
+    /// Año actual.
+    /// </summary>
+    private int CurrentYear = DateTime.Now.Year;
+
+
+    /// <summary>
+    /// Mes actual.
+    /// </summary>
+    private int CurrentMonth = DateTime.Now.Month;
+
+
+    protected override async void OnInitialized()
+    {
+        var token = LIN.Access.Calendar.Session.Instance.Token;
+        var x = await Access.Calendar.Controllers.Events.ReadAll(token);
+        eventos = x.Models;
+        StateHasChanged();
+    }
+
+
+    List<Types.Calendar.Models.EventModel> eventos = new();
+
+
+}
+
+<div class="wrapper">
+
+    <label>@(new DateTime(CurrentYear, CurrentMonth, 1).ToString("MMMM - yyyy"))</label>
+
+    <header>
+        <p class="current-date"></p>
+        <div class="icons">
+            <span id="prev" @onclick="E" class="material-symbols-rounded">@("<")</span>
+            <button id="next" @onclick="A" class="material-symbols-rounded">@(">")</button>
+        </div>
+    </header>
+    <div class="calendar">
+        <ul class="weeks">
+            <li>DO</li>
+            <li>LU</li>
+            <li>MA</li>
+            <li>MI</li>
+            <li>JU</li>
+            <li>VI</li>
+            <li>SA</li>
+        </ul>
+        <ul class="days">
+
+            @{
+                int firstDayOfMonth = new DateTime(CurrentYear, CurrentMonth, 1).DayOfWeek.GetHashCode();
+                int lastDateOfMonth = DateTime.DaysInMonth(CurrentYear, CurrentMonth);
+                int lastDayOfMonth = new DateTime(CurrentYear, CurrentMonth, lastDateOfMonth).DayOfWeek.GetHashCode();
+                int lastDateOfLastMonth = (new DateTime(CurrentYear, CurrentMonth, 1)).AddDays(-1).Day;
+            }
+
+            @for (int i = firstDayOfMonth; i > 0; i--)
+            {
+                <li class="group flex justify-center items-center">
+                    <div class="group-hover:bg-gray-100 flex items-center justify-center w-9 h-9 rounded-full text-gray-400">
+                        @(lastDateOfLastMonth - i + 1)
+                    </div>
+                </li>
+            }
+
+            @for (int i = 1; i <= lastDateOfMonth; i++)
+            {
+
+                var time = new DateTime(CurrentYear, CurrentMonth, i);
+
+                var filter = eventos.Where(t =>
+                {
+                    var actual = new DateTime(t.DateStart.Year, t.DateStart.Month, t.DateStart.Day);
+                    return actual == time;
+                });
+
+                var have = filter.Any();
+                var today = time == Today;
+
+                <li class="group flex justify-center items-center">
+                    <div class="group-hover:bg-gray-100 flex items-center justify-center w-10 h-10 rounded-full text-black @(have?"bg-indigo-500 text-white group-hover:bg-indigo-300":"") @(today?"bg-green-500 text-white group-hover:bg-green-300":"")">
+                        <span class="text-base">@i</span>
+                    </div>
+                </li>
+            }
+
+            @for (int i = lastDayOfMonth; i < 6; i++)
+            {
+                <li class="group flex justify-center items-center">
+                    <div class="group-hover:bg-gray-100 flex items-center justify-center w-9 h-9 rounded-full text-gray-400">
+                        @(i - lastDayOfMonth + 1)
+                    </div>
+                </li>
+
+            }
+
+
+
+        </ul>
+    </div>
+</div>
+
+@functions {
+
+    void A()
+    {
+        var newDate = new DateTime(CurrentYear, CurrentMonth, 1).AddMonths(1);
+        CurrentMonth = newDate.Month;
+        CurrentYear = newDate.Year;
+        StateHasChanged();
+    }
+
+    void E()
+    {
+        var newDate = new DateTime(CurrentYear, CurrentMonth, 1).AddMonths(-1);
+        CurrentMonth = newDate.Month;
+        CurrentYear = newDate.Year;
+        StateHasChanged();
+    }
+}
