@@ -1,6 +1,12 @@
 ﻿@page "/"
-
+@inject NavigationManager nav
 <PageTitle>Home</PageTitle>
+
+@if(!LIN.Access.Calendar.Session.IsOpen)
+{
+    Task.Run(()=> nav.NavigateTo("/login"));
+    return;
+}
 
 <div class="flex items-center justify-center w-full">
 

@@ -30,6 +30,7 @@
 
 }
 
+
 <div class="wrapper">
 
     <label>@(new DateTime(CurrentYear, CurrentMonth, 1).ToString("MMMM - yyyy"))</label>
@@ -84,7 +85,7 @@
                 var today = time == Today;
 
                 <li class="group flex justify-center items-center">
-                    <div class="group-hover:bg-gray-100 flex items-center justify-center w-10 h-10 rounded-full text-black @(have?"bg-indigo-500 text-white group-hover:bg-indigo-300":"") @(today?"bg-green-500 text-white group-hover:bg-green-300":"")">
+                    <div class="group-hover:bg-gray-100 flex items-center justify-center w-10 h-10 rounded-full text-black @(today?"bg-gray-200 group-hover:bg-gray-300":"") @(have?"bg-indigo-500 text-white group-hover:bg-indigo-300":"") ">
                         <span class="text-base">@i</span>
                     </div>
                 </li>
