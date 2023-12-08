@@ -1,5 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy-Medium.ttf') format('truetype'); /* La fuente por defecto será la negrita */
+    font-weight: normal; /* Definimos el peso normal */
+}
+
+/* Especificamos la fuente Gilroy en negrita */
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy-Bold.ttf') format('truetype');
+    font-weight: bold; /* Definimos el peso en negrita */
+}
+
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Gilroy' !important;
 }
 
 a, .btn-link {

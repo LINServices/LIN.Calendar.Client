@@ -28,7 +28,7 @@
 @code {
 
 
-    string errorVisible = "h";
+    string errorVisible = "hidden";
 
 
 
@@ -51,7 +51,7 @@
                         @if (isLogin)
                         {
                             <center>
-                                <CircleLoader/>
+                                <LIN.Calendar.Client.Shared.CircleLoader />
                                 <h5 class="mt-2 gilroy-bold text-sm text-gray-600 dark:text-gray-300">@LogMessage</h5>
 
 
@@ -74,7 +74,7 @@
                                             <img class="self-center" src="./chat.png" style="height:30px; width: 30px"/>
                                             <label class="text-xl self-center ml-3 font-bold dark:text-gray-200">
                                                 LIN
-                                                <span class="text-transparent bg-clip-text bg-gradient-to-r to-indigo-500 from-blue-500"> Allo</span>
+                                                <span class="text-transparent bg-clip-text bg-gradient-to-r to-indigo-500 from-blue-500"> Calendar</span>
 
                                             </label>
                                         </div>
@@ -224,7 +224,7 @@
     /// </summary>
     void HideError()
     {
-        errorVisible = "h";
+        errorVisible = "hidden";
         StateHasChanged();
     }
 
@@ -244,7 +244,7 @@
     /// </summary>
     void ShowError(string message)
     {
-        errorVisible = "v";
+        errorVisible = "visible";
         ErrorMessage = message;
         StateHasChanged();
     }
