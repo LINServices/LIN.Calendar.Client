@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Access.Calendar", "D:\L
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Types.Calendar", "D:\LIN Services\Tipos\LIN.Types.Calendar\LIN.Types.Calendar.csproj", "{09C85293-754E-4FB9-B316-D3421805C02B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Modules", "D:\LIN Services\Tipos\LIN.Modules\LIN.Modules.csproj", "{324907D9-0F20-4B8F-8F05-B7C6E1C8DF65}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Types", "D:\LIN Services\Tipos\LIN.Types\LIN.Types.csproj", "{2CAA78AA-EF42-4454-ADCB-51D53773604B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Access.Auth", "D:\LIN Services\AccesoAPI\LIN.Access.Auth\LIN.Access.Auth.csproj", "{0D3AA78C-AB5C-4F6C-9272-68CB81682BC8}"
@@ -41,10 +39,6 @@ Global
 		{09C85293-754E-4FB9-B316-D3421805C02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09C85293-754E-4FB9-B316-D3421805C02B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09C85293-754E-4FB9-B316-D3421805C02B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{324907D9-0F20-4B8F-8F05-B7C6E1C8DF65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{324907D9-0F20-4B8F-8F05-B7C6E1C8DF65}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{324907D9-0F20-4B8F-8F05-B7C6E1C8DF65}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{324907D9-0F20-4B8F-8F05-B7C6E1C8DF65}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2CAA78AA-EF42-4454-ADCB-51D53773604B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2CAA78AA-EF42-4454-ADCB-51D53773604B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CAA78AA-EF42-4454-ADCB-51D53773604B}.Release|Any CPU.ActiveCfg = Release|Any CPU

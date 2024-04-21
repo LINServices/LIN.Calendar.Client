@@ -70,22 +70,6 @@ h1:focus {
 
 
 
-
-
-.wrapper {
-    width: 450px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-}
-
-    .wrapper header {
-        display: flex;
-        align-items: center;
-        padding: 25px 30px 10px;
-        justify-content: space-between;
-    }
-
 header .icons {
     display: flex;
 }
@@ -117,7 +101,6 @@ header .current-date {
 }
 
 .calendar {
-    padding: 20px;
 }
 
     .calendar ul {
@@ -132,7 +115,6 @@ header .current-date {
     }
 
     .calendar li {
-        color: #333;
         width: calc(100% / 7);
         font-size: 1.07rem;
     }
