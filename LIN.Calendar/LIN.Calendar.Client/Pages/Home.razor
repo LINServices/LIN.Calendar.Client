@@ -2,14 +2,14 @@
 @inject NavigationManager nav
 <PageTitle>Calendario</PageTitle>
 
-@* @if(!LIN.Access.Calendar.Session.IsOpen)
+@if(!LIN.Access.Calendar.Session.IsOpen)
 {
     <div class="flex h-dvh w-full items-center justify-center">
         <Loader />
     </div>
     Task.Run(()=> nav.NavigateTo("/login"));
     return;
-} *@
+}
 
 <div class="flex h-dvh w-full flex-grow flex-col items-center overflow-hidden px-4 lg:px-6">
 
