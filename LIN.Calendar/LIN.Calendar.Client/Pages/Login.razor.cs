@@ -1,6 +1,4 @@
 ﻿using LIN.Access.Auth.Hubs;
-using LIN.Types.Cloud.Identity.Enumerations;
-using LIN.Types.Cloud.Identity.Models;
 using Microsoft.AspNetCore.Components;
 
 namespace LIN.Calendar.Client.Pages;
@@ -91,26 +89,25 @@ public partial class Login
     /// </summary>
     public Login()
     {
-     //   MauiProgram.Aa();
+        
     }
 
 
 
-   /// <summary>
-   /// Evento.
-   /// </summary>
+    /// <summary>
+    /// Evento.
+    /// </summary>
     protected override async Task OnInitializedAsync()
     {
 
 
-        _ = base.OnInitializedAsync();
-
         if (Access.Auth.SessionAuth.IsOpen)
         {
-            NavigationManager?.NavigateTo("/home");
+            NavigationManager?.NavigateTo("/");
             return;
         }
 
+      
 
     }
 
@@ -217,7 +214,7 @@ public partial class Login
             case Responses.Success:
 
                 // Navegar.
-                NavigationManager?.NavigateTo("/home");
+                NavigationManager?.NavigateTo("/");
                 return;
 
             // Contraseña incorrecta.
@@ -351,7 +348,7 @@ public partial class Login
         await Task.Delay(4000);
 
         // Esperar la respuesta de login.
-        var (session, response) = await logIn;
+        var (_, response) = await logIn;
 
         // Segun la respuesta.
         switch (response)
@@ -359,7 +356,7 @@ public partial class Login
 
             // Correcto.
             case Responses.Success:
-                NavigationManager?.NavigateTo("/home");
+                NavigationManager?.NavigateTo("/");
                 return;
 
             // Otros.

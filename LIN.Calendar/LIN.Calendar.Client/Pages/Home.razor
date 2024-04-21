@@ -1,12 +1,15 @@
-﻿@page "/home"
+﻿@page "/"
 @inject NavigationManager nav
-<PageTitle>Home</PageTitle>
+<PageTitle>Calendario</PageTitle>
 
-@* @if(!LIN.Access.Calendar.Session.IsOpen)
+@if(!LIN.Access.Calendar.Session.IsOpen)
 {
-    Task.Run(()=> nav.NavigateTo("/"));
+    <div class="flex h-dvh w-full items-center justify-center">
+        <Loader />
+    </div>
+    Task.Run(()=> nav.NavigateTo("/login"));
     return;
-} *@
+}
 
 <div class="flex h-dvh w-full flex-grow flex-col items-center overflow-hidden px-4 lg:px-6">
 
@@ -15,16 +18,34 @@
         @* Calendario *@
         <div class="flex w-full justify-center">
             <div class="w-full max-w-lg self-center">
-                <LIN.Calendar.Client.Shared.Calendar />
+                <LIN.Calendar.Client.Shared.Calendar eventos="eventos" OnClick="Filter" />
             </div>
         </div>
 
         @* Eventos *@
-        <div class="mt-4 h-full w-full overflow-y-auto dl:mt-0">
+        <div class="mt-4 h-full w-full dl:mt-0">
             
             <div class="flex flex-col">
                 <label class="text-5xl font-bold dark:text-zinc-200">Mis Eventos</label>
                 <label class="text-2xl dark:text-zinc-400">Eventos Destacados</label>
+            </div>
+
+            <div class="flex w-full flex-col gap-3 py-3">
+
+            @foreach(var e in renders)
+            {
+
+                    <div class="flex items-center rounded-lg bg-zinc-50 p-4 shadow-sm dark:bg-zinc-800">
+                        <div class="flex w-full flex-col justify-center">
+                            <label class="font-bold dark:text-zinc-300">@e.Nombre</label>
+                            <label class="text-sm dark:text-zinc-400">@e.DateStart</label>
+                        </div>
+                    </div>
+
+
+              
+            }
+
             </div>
            
         </div>
@@ -32,3 +53,35 @@
     </div>
 
 </div>
+
+@code {
+
+
+    public List<Types.Calendar.Models.EventModel> eventos { get; set; } = new();
+    public List<Types.Calendar.Models.EventModel> renders { get; set; } = new();
+
+
+
+    protected override void OnInitialized()
+    {
+        A();
+        base.OnInitialized();
+    }
+
+    async void A()
+    {
+        var token = LIN.Access.Calendar.Session.Instance.Token;
+        var x = await Access.Calendar.Controllers.Events.ReadAll(token);
+
+        eventos = x.Models;
+        StateHasChanged();
+    }
+
+
+    void Filter(DateTime date)
+    {
+        renders = eventos.Where(t => t.DateStart.Date == date.Date).ToList();
+        StateHasChanged();
+    }
+
+}
