@@ -104,8 +104,16 @@
                 var today = time == Today;
 
                 <li @onclick="()=>OnClick(time)" class="group flex items-center justify-center">
-                    <div class="flex h-10 w-10 items-center justify-center rounded-full text-black dark:text-zinc-200 group-hover:bg-gray-100 dark:group-hover:bg-current-500/30 @(today?"bg-current-500 group-hover:bg-current-600 text-white":"") @(have?"bg-indigo-400 text-white group-hover:bg-indigo-300":"")">
+                    <div class="flex h-10 w-10 flex-col items-center justify-center rounded-full text-black dark:text-zinc-200 group-hover:bg-gray-100 dark:group-hover:bg-current-500/30 @(today?"bg-current-500 group-hover:bg-current-600 text-white":"")">
                         <span class="text-base">@i</span>
+                        @if(have)
+                        {
+                            <div class="flex items-center justify-center" >
+                                <div class="h-2 w-2 rounded-full @(today ? "bg-white":"bg-current-500")"></div>
+                            </div>
+                            
+                        }
+                       
                     </div>
                 </li>
             }
