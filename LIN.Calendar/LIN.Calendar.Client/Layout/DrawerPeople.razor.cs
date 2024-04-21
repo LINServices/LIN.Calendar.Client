@@ -13,6 +13,7 @@ public partial class DrawerPeople
     public EventModel EventModel { get; set; } = new()
     {
         DateStart = DateTime.Now,
+        EndStart = DateTime.Now,
     };
     
 
@@ -53,8 +54,10 @@ public partial class DrawerPeople
     /// <summary>
     /// Abrir drawer.
     /// </summary>
-    public async void Show()
+    public async void Show(DateTime time)
     {
+        EventModel.DateStart =( time == default ? DateTime.Now:time);
+        EventModel.EndStart =( time == default ? DateTime.Now:time);
         await JS.InvokeVoidAsync("ShowDrawer", _id, "btn-close-panel-ide");
     }
 
@@ -84,6 +87,7 @@ public partial class DrawerPeople
         EventModel = new()
         {
             DateStart = DateTime.Now,
+            EndStart = DateTime.Now,
         };
 
         var response = await LIN.Access.Calendar.Controllers.Events.Create(LIN.Access.Calendar.Session.Instance.Token, actual);
