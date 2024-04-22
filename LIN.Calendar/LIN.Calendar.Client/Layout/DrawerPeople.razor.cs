@@ -10,6 +10,9 @@ public partial class DrawerPeople
 {
 
 
+    int Type = 0;
+
+
     public EventModel EventModel { get; set; } = new()
     {
         DateStart = DateTime.Now,
@@ -89,6 +92,8 @@ public partial class DrawerPeople
             DateStart = DateTime.Now,
             EndStart = DateTime.Now,
         };
+
+        actual.Type = (Types.Calendar.Enumerations.EventTypes)Type;
 
         var response = await LIN.Access.Calendar.Controllers.Events.Create(LIN.Access.Calendar.Session.Instance.Token, actual);
 

@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Access.Auth", "D:\LIN S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Types.Cloud.Identity", "..\..\Tipos\LIN.Types.Cloud.Identity\LIN.Types.Cloud.Identity.csproj", "{1BAB8F86-EE55-4383-9082-D0DFF9CB13C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LIN.Contacts.Shared", "..\..\Components\LIN.Contacts.Shared\LIN.Contacts.Shared.csproj", "{5B260DB6-131D-4D63-9B05-425D9A06B270}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Contacts.Shared", "..\..\Components\LIN.Contacts.Shared\LIN.Contacts.Shared.csproj", "{5B260DB6-131D-4D63-9B05-425D9A06B270}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

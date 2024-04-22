@@ -2,73 +2,64 @@
 @inject NavigationManager nav
 <PageTitle>Calendario</PageTitle>
 
-@if(!LIN.Access.Calendar.Session.IsOpen)
+@if (!LIN.Access.Calendar.Session.IsOpen)
 {
     <div class="flex h-dvh w-full items-center justify-center">
         <Loader />
     </div>
-    Task.Run(()=> nav.NavigateTo("/login"));
+    Task.Run(() => nav.NavigateTo("/login"));
     return;
 }
 
 <div class="flex h-dvh w-full flex-grow flex-col items-center overflow-hidden px-4 lg:px-6">
 
-    <div class="grid-cols-1 grid h-full w-full items-center justify-center gap-3 overflow-y-auto py-7 dl:overflow-y-hidden dl:grid-cols-2">
+    <div class="grid-cols-1 grid h-full w-full items-center justify-center gap-3 overflow-y-auto py-7 dl:overflow-y-hidden dl:grid-cols-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-zinc-900 dark:[&::-webkit-scrollbar-thumb]:bg-zinc-800">
 
         @* Calendario *@
         <div class="flex w-full justify-center">
-            <div class="w-full max-w-lg self-center">
+            <div class="w-full self-center dl:max-w-lg">
                 <LIN.Contacts.Shared.Calendar Events="eventos" OnClick="Filter" Selected="Sel" />
             </div>
         </div>
 
         @* Eventos *@
-        <div class="mt-4 h-full w-full dl:mt-0">
-            
+        <div class="mt-4 h-full w-full dl:overflow-y-auto dl:mt-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-zinc-900 dark:[&::-webkit-scrollbar-thumb]:bg-zinc-800">
+
             <div class="flex flex-col">
                 <label class="text-5xl font-bold dark:text-zinc-200">Mis Eventos</label>
-                <label class="text-2xl dark:text-zinc-400">Eventos Destacados</label>
+                <label class="mt-1 text-2xl text-zinc-800 dark:text-zinc-400">Eventos del @Sel.ToString("dd") de @Sel.ToString("MMMM") de @Sel.ToString("yyyy")</label>
 
                 <button @onclick="()=>NewEvent.Show(Sel)" type="button" class="me-2 mt-3 w-max rounded-full bg-current-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-current-600 focus:outline-none focus:ring-4 focus:ring-current-300 dark:bg-current-600 dark:hover:bg-current-700 dark:focus:ring-current-800">Agregar nuevo evento</button>
 
             </div>
 
-            <div class="flex w-full flex-col gap-3 py-3">
+            <div class="flex w-full flex-col gap-3 py-5">
 
-            @foreach(var e in renders)
-            {
-
-                    <div class="flex items-center rounded-lg bg-zinc-50 p-4 shadow-sm dark:bg-zinc-800">
-                        <div class="flex w-full flex-col justify-center">
-                            <label class="font-bold dark:text-zinc-300">@e.Nombre</label>
-
-                            @if (e.DateStart == e.EndStart|| e.EndStart==default)
-                            {
-                                <label class="dark:text-zinc-400">@e.DateStart.ToString("dd") de @e.DateStart.ToString("MMMM") a las @e.DateStart.ToString("HH:mm")</label>
-                            }
-                            else
-                            {
-
-                                var dif = e.EndStart - e.DateStart;
-
-                                <label class="dark:text-zinc-400">@e.DateStart.ToString("dd") de @e.DateStart.ToString("MMMM") a las @e.DateStart.ToString("HH:mm") durante @dif.TotalMinutes minutos</label>
-                            }
+                @if (renders.Count <= 0)
+                {
+                    <div class="">
+                        <div class="border-2 mt-3 flex w-full items-center justify-center rounded-lg border-dashed border-gray-300 py-10 dark:border-zinc-600">
+                            <label class="text-gray-400 dark:text-zinc-400">No tienes ningún evento para este dia</label>
                         </div>
                     </div>
+                }
 
+                @foreach (var e in renders)
+                {
 
-              
-            }
+                   <LIN.Contacts.Shared.EventControl Event="e"></LIN.Contacts.Shared.EventControl>
+
+                }
 
             </div>
-           
+
         </div>
 
     </div>
 
 </div>
 
-<LIN.Calendar.Client.Layout.DrawerPeople @ref="NewEvent" OnSuccess="OnSuccess" ></LIN.Calendar.Client.Layout.DrawerPeople>
+<LIN.Calendar.Client.Layout.DrawerPeople @ref="NewEvent" OnSuccess="OnSuccess"></LIN.Calendar.Client.Layout.DrawerPeople>
 
 @code {
     LIN.Calendar.Client.Layout.DrawerPeople NewEvent;
@@ -81,6 +72,7 @@
     protected override void OnInitialized()
     {
         A();
+
         base.OnInitialized();
     }
 
@@ -90,24 +82,27 @@
         var x = await Access.Calendar.Controllers.Events.ReadAll(token);
 
         eventos = x.Models;
+        Filter(DateTime.Now);
         StateHasChanged();
     }
 
 
-    DateTime Sel;
+    DateTime Sel = DateTime.Now;
 
-    void Filter(DateTime date)
+
+    void Filter(DateTime? date = null)
     {
-        Sel = date;
-        renders = eventos.Where(t => t.DateStart.Date == date.Date).ToList();
+        Sel = date ?? Sel;
+        renders = eventos.Where(t => t.DateStart.Date == Sel.Date).ToList();
         StateHasChanged();
-
     }
 
 
     void OnSuccess(EventModel @event)
     {
+
         eventos.Add(@event);
+        Filter();
         StateHasChanged();
     }
 
