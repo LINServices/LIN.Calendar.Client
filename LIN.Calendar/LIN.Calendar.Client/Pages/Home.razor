@@ -18,7 +18,7 @@
         @* Calendario *@
         <div class="flex w-full justify-center">
             <div class="w-full self-center dl:max-w-lg">
-                <LIN.Contacts.Shared.Calendar Events="eventos" OnClick="Filter" Selected="Sel" />
+                <LIN.Calendar.Shared.Calendar Events="eventos" OnClick="Filter" Selected="Sel" />
             </div>
         </div>
 
@@ -47,7 +47,7 @@
                 @foreach (var e in renders)
                 {
 
-                   <LIN.Contacts.Shared.EventControl Event="e"></LIN.Contacts.Shared.EventControl>
+                   <LIN.Calendar.Shared.EventControl Event="e"></LIN.Calendar.Shared.EventControl>
 
                 }
 
