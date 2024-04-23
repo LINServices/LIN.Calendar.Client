@@ -47,7 +47,7 @@
                 @foreach (var e in renders)
                 {
 
-                   <LIN.Calendar.Shared.EventControl Event="e"></LIN.Calendar.Shared.EventControl>
+                   <LIN.Calendar.Shared.EventControl Event="e" OnClick="OnPress"></LIN.Calendar.Shared.EventControl>
 
                 }
 
@@ -60,9 +60,12 @@
 </div>
 
 <LIN.Calendar.Client.Layout.DrawerPeople @ref="NewEvent" OnSuccess="OnSuccess"></LIN.Calendar.Client.Layout.DrawerPeople>
+<LIN.Calendar.Client.Layout.DrawerEvent @ref="DrawerEvent"/>
 
 @code {
     LIN.Calendar.Client.Layout.DrawerPeople NewEvent;
+
+    LIN.Calendar.Client.Layout.DrawerEvent DrawerEvent;
 
     public List<Types.Calendar.Models.EventModel> eventos { get; set; } = new();
     public List<Types.Calendar.Models.EventModel> renders { get; set; } = new();
@@ -103,6 +106,13 @@
 
         eventos.Add(@event);
         Filter();
+        StateHasChanged();
+    }
+
+
+    void OnPress(EventModel @event)
+    {
+        DrawerEvent.Show(@event);
         StateHasChanged();
     }
 
