@@ -1,6 +1,6 @@
 <div align="center">
   <p align="center">
-    <img alt="heyform logo" height="60" src="./assets/icon.png">
+    <img alt="logo" height="60" src="./assets/icon.png">
   </p>
   <p>LIN Calendar es un proyecto de gestión de eventos, disponible para todos con el objetivo de ser confiable, seguro y multiplataforma.</p>
 
