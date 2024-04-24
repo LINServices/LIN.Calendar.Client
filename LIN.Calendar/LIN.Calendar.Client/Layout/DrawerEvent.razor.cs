@@ -1,5 +1,4 @@
-﻿using LIN.Calendar.Client.Pages;
-using LIN.Types.Calendar.Models;
+﻿using LIN.Types.Calendar.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
@@ -11,7 +10,7 @@ public partial class DrawerEvent
 
 
     public EventModel EventModel { get; set; } = new();
-    
+
 
     /// <summary>
     /// ID del elemento Html.
@@ -25,7 +24,7 @@ public partial class DrawerEvent
     private string Pattern { get; set; } = string.Empty;
 
 
-   
+
 
     /// <summary>
     /// Evento al ocultar.
@@ -46,6 +45,11 @@ public partial class DrawerEvent
 
 
 
+    [Parameter]
+    public Action<int> OnDelete { get; set; } = (e) => { };
+
+
+
 
     /// <summary>
     /// Abrir drawer.
@@ -53,7 +57,7 @@ public partial class DrawerEvent
     public async void Show(EventModel model)
     {
         EventModel = model;
-        await JS.InvokeVoidAsync("ShowDrawer", _id, "btn-close-panel-ide");
+        await JS.InvokeVoidAsync("ShowDrawer", _id, "btn-close-panel-ide", "btn-close-panel-ide-cll", "btn-close-panel-ide-cll2");
         StateHasChanged();
     }
 
@@ -76,9 +80,9 @@ public partial class DrawerEvent
 
 
 
-    (string,string) GetClass()
+    (string, string) GetClass()
     {
-        switch(EventModel.Type)
+        switch (EventModel.Type)
         {
             case Types.Calendar.Enumerations.EventTypes.Event:
                 return ("bg-amber-400", "text-amber-400");
@@ -89,47 +93,74 @@ public partial class DrawerEvent
             case Types.Calendar.Enumerations.EventTypes.Meeting:
                 return ("bg-green-500", "text-green-500");
 
-           default:
+            default:
                 return ("bg-rose-500", "text-rose-500");
         }
     }
 
 
-    string GetFaltante(DateTime date)
+    (bool, string) GetFaltante(DateTime date, DateTime endTime)
     {
 
         var diferencia = date - DateTime.Now;
 
 
-        
+
         if (diferencia.Ticks < 0)
         {
-            if (diferencia.TotalDays < -1)
-                return $"Hace {Math.Abs( diferencia.TotalDays):#} dias";
+
+            if (DateTime.Now < endTime)
+            {
+
+                diferencia = DateTime.Now - date;
+
+                if (diferencia.TotalDays < -1)
+                    return (true, $"Inicio hace {Math.Abs(diferencia.TotalDays):#} dias");
+
+                if (diferencia.TotalMinutes < -60)
+                    return (true, $"Inicio hace {Math.Abs(diferencia.TotalHours):#} horas");
+
+                return (true, $"Inicio hace {Math.Abs(diferencia.TotalMinutes):#} minutos");
+            }
 
 
-            if (diferencia.TotalMinutes < -60)
-                return $"Hace {Math.Abs(diferencia.TotalHours *1):#} horas";
+            diferencia = DateTime.Now - endTime;
+
+            if (diferencia.TotalDays > 1)
+                return (false, $"Finalizo hace {Math.Abs(diferencia.TotalDays):#} dias");
+
+            if (diferencia.TotalMinutes > 60)
+                return (false, $"Finalizo hace {Math.Abs(diferencia.TotalHours):#} horas");
+
+            return (false, $"Finalizo hace {Math.Abs(diferencia.TotalMinutes):#} minutos");
 
 
-            return $"Hace {Math.Abs(diferencia.TotalMinutes * 1):#} minutos";
         }
-            
+
+
 
         if (diferencia.TotalDays > 1)
-            return $"Faltan {diferencia.TotalDays:#} dias";
-
+            return (false, $"Faltan {diferencia.TotalDays:#} dias");
 
         if (diferencia.TotalMinutes > 60)
-            return $"Faltan {diferencia.TotalHours:#} horas";
+            return (false, $"Faltan {diferencia.TotalHours:#} horas");
 
-
-        return $"Faltan {diferencia.TotalMinutes:#} minutos";
-
-
-
+        return (false, $"Faltan {diferencia.TotalMinutes:#} minutos");
 
     }
-   
-   
+
+
+
+    async void Delete()
+    {
+        var delete = await LIN.Access.Calendar.Controllers.Events.Delete(EventModel.Id, LIN.Access.Calendar.Session.Instance.Token);
+
+        if (delete.Response == Responses.Success)
+            OnDelete(EventModel.Id);
+
+    }
+
+
 }
+
+

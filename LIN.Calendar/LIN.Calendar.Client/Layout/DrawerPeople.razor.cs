@@ -1,5 +1,4 @@
-﻿using LIN.Calendar.Client.Pages;
-using LIN.Types.Calendar.Models;
+﻿using LIN.Types.Calendar.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
@@ -18,7 +17,7 @@ public partial class DrawerPeople
         DateStart = DateTime.Now,
         EndStart = DateTime.Now,
     };
-    
+
 
     /// <summary>
     /// ID del elemento Html.
@@ -32,7 +31,7 @@ public partial class DrawerPeople
     private string Pattern { get; set; } = string.Empty;
 
 
-   
+
 
     /// <summary>
     /// Evento al ocultar.
@@ -59,8 +58,8 @@ public partial class DrawerPeople
     /// </summary>
     public async void Show(DateTime time)
     {
-        EventModel.DateStart =( time == default ? DateTime.Now:time);
-        EventModel.EndStart =( time == default ? DateTime.Now:time);
+        EventModel.DateStart = (time == default ? DateTime.Now : time);
+        EventModel.EndStart = (time == default ? DateTime.Now : time);
         await JS.InvokeVoidAsync("ShowDrawer", _id, "btn-close-panel-ide");
     }
 
@@ -82,7 +81,7 @@ public partial class DrawerPeople
 
 
 
-   
+
     async void Create()
     {
 
@@ -95,9 +94,18 @@ public partial class DrawerPeople
 
         actual.Type = (Types.Calendar.Enumerations.EventTypes)Type;
 
+        // Evaluar.
+        if (actual.EndStart < actual.DateStart)
+            actual.EndStart = actual.DateStart;
+
         var response = await LIN.Access.Calendar.Controllers.Events.Create(LIN.Access.Calendar.Session.Instance.Token, actual);
 
-        OnSuccess(actual);
+        if (response.Response == Responses.Success)
+        {
+            actual.Id = response.LastID;
+            OnSuccess(actual);
+        }
+
     }
 
 

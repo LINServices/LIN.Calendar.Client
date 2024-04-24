@@ -46,9 +46,7 @@
 
                 @foreach (var e in renders)
                 {
-
-                   <LIN.Calendar.Shared.EventControl Event="e" OnClick="OnPress"></LIN.Calendar.Shared.EventControl>
-
+                   <LIN.Calendar.Shared.EventControl Event="e" OnClick="OnPress" />
                 }
 
             </div>
@@ -60,7 +58,7 @@
 </div>
 
 <LIN.Calendar.Client.Layout.DrawerPeople @ref="NewEvent" OnSuccess="OnSuccess"></LIN.Calendar.Client.Layout.DrawerPeople>
-<LIN.Calendar.Client.Layout.DrawerEvent @ref="DrawerEvent"/>
+<LIN.Calendar.Client.Layout.DrawerEvent @ref="DrawerEvent" OnDelete="OnDelete"/>
 
 @code {
     LIN.Calendar.Client.Layout.DrawerPeople NewEvent;
@@ -97,6 +95,15 @@
     {
         Sel = date ?? Sel;
         renders = eventos.Where(t => t.DateStart.Date == Sel.Date).ToList();
+        StateHasChanged();
+    }
+
+
+
+    void OnDelete(int id)
+    {
+        eventos.RemoveAll(t => t.Id == id);
+        renders.RemoveAll(t => t.Id == id);
         StateHasChanged();
     }
 
