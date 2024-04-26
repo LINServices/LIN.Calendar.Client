@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
-
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -7,11 +6,9 @@
     <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
     <StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.4" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Components\LIN.Calendar.Shared\LIN.Calendar.Shared.csproj" />
     <ProjectReference Include="..\..\..\..\Tipos\LIN.Types.Cloud.Identity\LIN.Types.Cloud.Identity.csproj" />
@@ -20,5 +17,4 @@
     <ProjectReference Include="D:\LIN Services\Tipos\LIN.Types.Calendar\LIN.Types.Calendar.csproj" />
     <ProjectReference Include="D:\LIN Services\Tipos\LIN.Types\LIN.Types.csproj" />
   </ItemGroup>
-
 </Project>
