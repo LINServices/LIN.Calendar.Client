@@ -57,13 +57,13 @@
 
 </div>
 
-<LIN.Calendar.Client.Layout.DrawerPeople @ref="NewEvent" OnSuccess="OnSuccess"></LIN.Calendar.Client.Layout.DrawerPeople>
-<LIN.Calendar.Client.Layout.DrawerEvent @ref="DrawerEvent" OnDelete="OnDelete"/>
+<LIN.Calendar.Shared.Drawers.DrawerPeople @ref="NewEvent" OnSuccess="OnSuccess"></LIN.Calendar.Shared.Drawers.DrawerPeople>
+<LIN.Calendar.Shared.Drawers.DrawerEvent @ref="DrawerEvent" OnDelete="OnDelete"/>
 
 @code {
-    LIN.Calendar.Client.Layout.DrawerPeople NewEvent;
+    LIN.Calendar.Shared.Drawers.DrawerPeople NewEvent;
 
-    LIN.Calendar.Client.Layout.DrawerEvent DrawerEvent;
+    LIN.Calendar.Shared.Drawers.DrawerEvent DrawerEvent;
 
     public List<Types.Calendar.Models.EventModel> eventos { get; set; } = new();
     public List<Types.Calendar.Models.EventModel> renders { get; set; } = new();

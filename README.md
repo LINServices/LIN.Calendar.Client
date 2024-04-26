@@ -18,7 +18,7 @@
 ## Tecnologías
 
 - .NET 8.
-- MAUI & Blazor Hybrid App.
+- Blazor
 - HTML, CSS y JavaScript.
 - Tailwind CSS.
 
