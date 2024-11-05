@@ -7,16 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Calendar", "LIN.Calenda
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Calendar.Client", "LIN.Calendar\LIN.Calendar.Client\LIN.Calendar.Client.csproj", "{A70EDFC9-9E7C-4CC9-B1F4-EEDCB12C826A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Access.Calendar", "D:\LIN Services\AccesoAPI\LIN.Access.Calendar\LIN.Access.Calendar.csproj", "{CA1CB032-AAA2-4161-A25A-7A9045EC5589}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Types.Calendar", "D:\LIN Services\Tipos\LIN.Types.Calendar\LIN.Types.Calendar.csproj", "{09C85293-754E-4FB9-B316-D3421805C02B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Types", "D:\LIN Services\Tipos\LIN.Types\LIN.Types.csproj", "{2CAA78AA-EF42-4454-ADCB-51D53773604B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Access.Auth", "D:\LIN Services\AccesoAPI\LIN.Access.Auth\LIN.Access.Auth.csproj", "{0D3AA78C-AB5C-4F6C-9272-68CB81682BC8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Types.Cloud.Identity", "..\..\Tipos\LIN.Types.Cloud.Identity\LIN.Types.Cloud.Identity.csproj", "{1BAB8F86-EE55-4383-9082-D0DFF9CB13C9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIN.Calendar.Shared", "..\..\Components\LIN.Calendar.Shared\LIN.Calendar.Shared.csproj", "{5B260DB6-131D-4D63-9B05-425D9A06B270}"
 EndProject
 Global
@@ -33,26 +23,6 @@ Global
 		{A70EDFC9-9E7C-4CC9-B1F4-EEDCB12C826A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A70EDFC9-9E7C-4CC9-B1F4-EEDCB12C826A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A70EDFC9-9E7C-4CC9-B1F4-EEDCB12C826A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA1CB032-AAA2-4161-A25A-7A9045EC5589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA1CB032-AAA2-4161-A25A-7A9045EC5589}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA1CB032-AAA2-4161-A25A-7A9045EC5589}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA1CB032-AAA2-4161-A25A-7A9045EC5589}.Release|Any CPU.Build.0 = Release|Any CPU
-		{09C85293-754E-4FB9-B316-D3421805C02B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09C85293-754E-4FB9-B316-D3421805C02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{09C85293-754E-4FB9-B316-D3421805C02B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{09C85293-754E-4FB9-B316-D3421805C02B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2CAA78AA-EF42-4454-ADCB-51D53773604B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2CAA78AA-EF42-4454-ADCB-51D53773604B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2CAA78AA-EF42-4454-ADCB-51D53773604B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2CAA78AA-EF42-4454-ADCB-51D53773604B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D3AA78C-AB5C-4F6C-9272-68CB81682BC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D3AA78C-AB5C-4F6C-9272-68CB81682BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D3AA78C-AB5C-4F6C-9272-68CB81682BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D3AA78C-AB5C-4F6C-9272-68CB81682BC8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1BAB8F86-EE55-4383-9082-D0DFF9CB13C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BAB8F86-EE55-4383-9082-D0DFF9CB13C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BAB8F86-EE55-4383-9082-D0DFF9CB13C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BAB8F86-EE55-4383-9082-D0DFF9CB13C9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5B260DB6-131D-4D63-9B05-425D9A06B270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5B260DB6-131D-4D63-9B05-425D9A06B270}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B260DB6-131D-4D63-9B05-425D9A06B270}.Release|Any CPU.ActiveCfg = Release|Any CPU

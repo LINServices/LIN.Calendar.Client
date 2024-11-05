@@ -1,5 +1,6 @@
 using LIN.Calendar.Client.Pages;
 using LIN.Calendar.Components;
+using LIN.Access.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
+builder.Services.AddAuthenticationService();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
