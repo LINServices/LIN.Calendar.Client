@@ -4,10 +4,11 @@ global using LIN.Types.Cloud.Identity.Models;
 
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using LIN.Access.Auth;
+using LIN.Access.Calendar;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 builder.Services.AddAuthenticationService();
-LIN.Access.Calendar.Build.Init();
+builder.Services.AddCalendarService();
 
 await builder.Build().RunAsync();
