@@ -103,7 +103,7 @@ public partial class Login
 
         if (Access.Auth.SessionAuth.IsOpen)
         {
-            NavigationManager?.NavigateTo("/homeui");
+            NavigationManager?.NavigateTo("/");
             return;
         }
 
@@ -214,7 +214,7 @@ public partial class Login
             case Responses.Success:
 
                 // Navegar.
-                NavigationManager?.NavigateTo("/homeui");
+                NavigationManager?.NavigateTo("/");
                 return;
 
             // Contraseña incorrecta.
